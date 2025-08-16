@@ -1,0 +1,17 @@
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "mysql"
+    url      = env("DATABASE_URL")
+}
+
+model Logs {
+    id        String   @id @default(uuid())
+    name      String   @db.VarChar(255)
+    content   String   @db.Text()
+    createdAt DateTime @default(now()) @map("created_at")
+
+    @@map("logs")
+}
