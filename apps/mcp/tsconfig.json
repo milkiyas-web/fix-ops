@@ -9,7 +9,8 @@
         "resolveJsonModule": true,
         "strict": true,
         "baseUrl": ".",
-        "paths": {}
+        "paths": {},
+        "outDir": "./dist",
     },
     "include": [
         "./**/*.ts",

@@ -6,7 +6,8 @@ export const incidentsSearchTool: Tool = {
   name: "incidents.search",
   description:
     "Search past incidents from the incident database given a text query and number of results (topK).",
-  parameters: {
+  // parameters changed to input schema for misstype if later this makes problems change it back.
+  inputSchema: {
     type: "object",
     properties: {
       text: {
@@ -21,7 +22,7 @@ export const incidentsSearchTool: Tool = {
     },
     required: ["text", "topK"],
   },
-  async execute({ text, topK }) {
+  async execute({ text, topK }: { text: string; topK: number }) {
     try {
       const res = await axios.post(
         "http://localhost:3000/api/incidents/search",
