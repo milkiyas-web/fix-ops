@@ -78,6 +78,7 @@ startServer();
 
 app.post("/debug/repo", async (req, res) => {
   const { repoUrl, branch } = req.body;
+  console.log("/debug/repo is hit");
   try {
     const result = await repoToolHandler({ repoUrl, branch }, {});
     res.json(result);
