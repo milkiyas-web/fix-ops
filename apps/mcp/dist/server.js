@@ -2,6 +2,11 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import http from "http";
+import { repoToolDef, repoToolHandler } from "tools/repoTool";
+import express from "express";
+import bodyParser from "body-parser";
+const app = express();
+app.use(bodyParser.json());
 console.log("Testing MCP server functionality...");
 // Create MCP server
 const server = new McpServer({
@@ -28,6 +33,8 @@ async function startServer() {
         });
         await server.connect(transport);
         console.log("MCP server connected to transport");
+        await server.registerTool("Repo", repoToolDef, repoToolHandler);
+        console.log("Repo registered");
         // Create HTTP server that Railway can detect
         const httpServer = http.createServer(async (req, res) => {
             if (req.url === "/health") {
@@ -53,3 +60,14 @@ async function startServer() {
     }
 }
 startServer();
+app.post("/debug/repo", async (req, res) => {
+    const { repoUrl, branch } = req.body;
+    console.log("/debug/repo is hit");
+    try {
+        const result = await repoToolHandler({ repoUrl, branch }, {});
+        res.json(result);
+    }
+    catch (err) {
+        res.status(500).json({ error: err.message });
+    }
+});

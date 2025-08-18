@@ -86,3 +86,8 @@ app.post("/debug/repo", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+
+const PORT = 3000;
+app.listen(PORT, () => {
+  console.log(`app litsening on port: ${PORT}`);
+});
