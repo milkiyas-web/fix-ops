@@ -32,10 +32,10 @@ async function startServer() {
         const transport = new StreamableHTTPServerTransport({
             sessionIdGenerator: generateSessionId,
         });
-        await server.connect(transport);
-        console.log("MCP server connected to transport");
         await server.registerTool("Repo", repoToolDef, repoToolHandler);
         console.log("Repo registered");
+        await server.connect(transport);
+        console.log("MCP server connected to transport");
         // Create HTTP server that Railway can detect
         const httpServer = http.createServer(async (req, res) => {
             if (req.url === "/health") {
