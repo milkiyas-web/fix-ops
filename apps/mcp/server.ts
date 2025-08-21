@@ -2,7 +2,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import http from "http";
-import { repoToolDef, repoToolHandler } from "./tools/repoTool";
+import { repoToolDef, repoToolHandler } from "./tools/repoTool.js";
 import express from "express";
 import bodyParser from "body-parser";
 

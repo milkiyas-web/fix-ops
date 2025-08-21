@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "main": "dist/server.js",
+  "--es-module-specifier-resolution=node": "node",
   "scripts": {
     "dev": "tsx watch server.ts",
     "build": "tsc && cpx \"tools/**/*\" dist/tools",
