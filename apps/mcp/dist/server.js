@@ -2,7 +2,7 @@
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { StreamableHTTPServerTransport } from "@modelcontextprotocol/sdk/server/streamableHttp.js";
 import http from "http";
-import { repoToolDef, repoToolHandler } from "tools/repoTool";
+import { repoToolDef, repoToolHandler } from "./tools/repoTool";
 import express from "express";
 import bodyParser from "body-parser";
 const app = express();
@@ -24,6 +24,7 @@ console.log("Available methods:", Object.getOwnPropertyNames(Object.getPrototype
 function generateSessionId() {
     return ("session-" + Date.now() + "-" + Math.random().toString(36).substr(2, 9));
 }
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 async function startServer() {
     try {
         const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
@@ -45,6 +46,10 @@ async function startServer() {
                 // Handle MCP requests
                 await transport.handleRequest(req, res);
             }
+            else if (req.url == "/") {
+                res.writeHead(200);
+                res.end("MCP server is alive");
+            }
             else {
                 res.writeHead(404);
                 res.end();
@@ -60,18 +65,17 @@ async function startServer() {
     }
 }
 startServer();
-app.post("/debug/repo", async (req, res) => {
-    const { repoUrl, branch } = req.body;
-    console.log("/debug/repo is hit");
-    try {
-        const result = await repoToolHandler({ repoUrl, branch }, {});
-        res.json(result);
-    }
-    catch (err) {
-        res.status(500).json({ error: err.message });
-    }
-});
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`app litsening on port: ${PORT}`);
-});
+// app.post("/debug/repo", async (req, res) => {
+//   const { repoUrl, branch } = req.body;
+//   console.log("/debug/repo is hit");
+//   try {
+//     const result = await repoToolHandler({ repoUrl, branch }, {});
+//     res.json(result);
+//   } catch (err: any) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//   console.log(`app litsening on port: ${PORT}`);
+// });

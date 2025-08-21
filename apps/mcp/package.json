@@ -5,9 +5,9 @@
   "type": "module",
   "main": "dist/server.ts",
   "scripts": {
-    "build": "tsc && cp -r ./tools ./dist/tools",
-    "start": "node dist/server.js",
-    "dev": "ts-node server.ts"
+    "dev": "tsx watch server.ts",
+    "build": "tsc && xcopy /E /I tools dist\\tools",
+    "start": "node dist/server.js"
   },
   "dependencies": {
     "@langchain/openai": "^0.6.7",
