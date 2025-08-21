@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "tsx watch server.ts",
     "build": "tsc && cpx \"tools/**/*\" dist/tools",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@langchain/openai": "^0.6.7",
