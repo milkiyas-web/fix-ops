@@ -1,6 +1,6 @@
 FROM node:20-alpine
 
-WORKDIR /temp
+WORKDIR /tmp
 
 COPY package*.json ./
 RUN npm install
