@@ -3,7 +3,7 @@ import * as fs from "fs";
 import simpleGit from "simple-git";
 import { z } from "zod";
 
-const BASE_REPO_DIR = "/app/repos"; // Railway persistent directory
+const BASE_REPO_DIR = "/tmp/repos"; // Railway persistent directory
 
 if (!fs.existsSync(BASE_REPO_DIR)) {
   fs.mkdirSync(BASE_REPO_DIR, { recursive: true });
