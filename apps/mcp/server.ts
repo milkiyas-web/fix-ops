@@ -76,18 +76,18 @@ async function startServer() {
 
 startServer();
 
-app.post("/debug/repo", async (req, res) => {
-  const { repoUrl, branch } = req.body;
-  console.log("/debug/repo is hit");
-  try {
-    const result = await repoToolHandler({ repoUrl, branch }, {});
-    res.json(result);
-  } catch (err: any) {
-    res.status(500).json({ error: err.message });
-  }
-});
+// app.post("/debug/repo", async (req, res) => {
+//   const { repoUrl, branch } = req.body;
+//   console.log("/debug/repo is hit");
+//   try {
+//     const result = await repoToolHandler({ repoUrl, branch }, {});
+//     res.json(result);
+//   } catch (err: any) {
+//     res.status(500).json({ error: err.message });
+//   }
+// });
 
-const PORT = 3000;
-app.listen(PORT, () => {
-  console.log(`app litsening on port: ${PORT}`);
-});
+// const PORT = 3000;
+// app.listen(PORT, () => {
+//   console.log(`app litsening on port: ${PORT}`);
+// });
