@@ -37,6 +37,7 @@ function generateSessionId() {
   );
 }
 
+const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
 async function startServer() {
   try {
     const port = process.env.PORT ? parseInt(process.env.PORT) : 3000;
@@ -59,6 +60,9 @@ async function startServer() {
       } else if (req.url === "/mcp" && req.method === "POST") {
         // Handle MCP requests
         await transport.handleRequest(req, res);
+      } else if (req.url == "/") {
+        res.writeHead(200);
+        res.end("MCP server is alive");
       } else {
         res.writeHead(404);
         res.end();
