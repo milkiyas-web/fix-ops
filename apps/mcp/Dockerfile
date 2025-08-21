@@ -4,11 +4,11 @@ FROM node:20-alpine
 WORKDIR /usr/src/app
 
 # Install dependencies first (better layer caching)
-COPY apps/mcp/package*.json ./
+COPY package*.json ./
 RUN npm ci
 
-# Copy the MCP app source only
-COPY apps/mcp .
+# Copy the MCP app source (Railway's build context is apps/mcp for this Dockerfile)
+COPY . .
 
 # Build the TypeScript project (emits dist and copies tools)
 RUN npm run build
