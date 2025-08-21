@@ -6,7 +6,7 @@
   "main": "dist/server.ts",
   "scripts": {
     "dev": "tsx watch server.ts",
-    "build": "tsc && xcopy /E /I tools dist\\tools",
+    "build": "tsc && cpx \"tools/**/*\" dist/tools",
     "start": "node dist/server.js"
   },
   "dependencies": {
@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
+    "cpx": "^1.5.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.5.0"
   }
