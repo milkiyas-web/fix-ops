@@ -10,6 +10,7 @@
         "strict": true,
         "baseUrl": ".",
         "paths": {},
+        "rootDir": ".",
         "outDir": "./dist",
     },
     "include": [
