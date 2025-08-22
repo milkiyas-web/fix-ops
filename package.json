@@ -1,0 +1,12 @@
+{
+    "name": "fix-ops",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "build": "cd apps/mcp && npm run build",
+        "start": "cd apps/mcp && npm start"
+    },
+    "engines": {
+        "node": ">=20.0.0"
+    }
+}

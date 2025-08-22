@@ -5,7 +5,7 @@ nixPkgs = ["nodejs_20", "npm"]
 cmds = ["cd apps/mcp && npm install"]
 
 [phases.build]
-cmds = ["cd apps/mcp && npm run build"]
+cmds = ["npm run build"]
 
 [start]
-cmd = "cd apps/mcp && npm start"
+cmd = "npm start"
