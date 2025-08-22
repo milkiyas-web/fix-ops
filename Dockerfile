@@ -6,10 +6,8 @@ WORKDIR /usr/src/app
 # Copy the entire project first
 COPY . .
 
-# Change to the MCP directory
+# Change to the MCP directory and install dependencies
 WORKDIR /usr/src/app/apps/mcp
-
-# Install dependencies
 RUN npm ci
 
 # Build the TypeScript project (emits dist and copies tools)
