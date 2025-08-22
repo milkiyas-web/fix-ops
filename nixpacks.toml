@@ -1,0 +1,11 @@
+[phases.setup]
+nixPkgs = ["nodejs_20", "npm"]
+
+[phases.install]
+cmds = ["cd apps/mcp && npm ci"]
+
+[phases.build]
+cmds = ["cd apps/mcp && npm run build"]
+
+[start]
+cmd = "cd apps/mcp && npm start"
