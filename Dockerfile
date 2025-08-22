@@ -17,3 +17,6 @@ EXPOSE 3000
 
 # Start the application
 CMD ["npm", "start"]
+
+# Ensure node_modules/.bin is in PATH
+ENV PATH /app/node_modules/.bin:$PATH
