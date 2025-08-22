@@ -1,5 +1,0 @@
-apps/web/
-apps/embed/
-node_modules/
-.git/
-*.log
