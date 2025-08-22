@@ -3,14 +3,14 @@ FROM node:20-alpine
 # Set app working directory inside the container
 WORKDIR /usr/src/app
 
-# Copy package files from the MCP app
-COPY apps/mcp/package*.json ./
+# Copy the entire project first
+COPY . .
 
-# Install dependencies first (better layer caching)
+# Change to the MCP directory
+WORKDIR /usr/src/app/apps/mcp
+
+# Install dependencies
 RUN npm ci
-
-# Copy the MCP app source
-COPY apps/mcp .
 
 # Build the TypeScript project (emits dist and copies tools)
 RUN npm run build
