@@ -145,6 +145,33 @@ async function startServer() {
     await server.connect(transport);
     console.log("MCP server connected to transport");
 
+    process.on("SIGTERM", () => {
+      console.error("SIGTERM received - graceful shutdown starting");
+      // flush logs, optionally close resources
+      setTimeout(() => {
+        console.error("SIGTERM: forced exit after timeout");
+        process.exit(1);
+      }, 10_000).unref(); // force exit if not graceful quickly
+    });
+
+    process.on("SIGINT", () => {
+      console.error("SIGINT received");
+    });
+
+    process.on("uncaughtException", (err) => {
+      console.error(
+        "uncaughtException:",
+        err && (err.stack || err.message || err)
+      );
+      // keep process alive a second to push logs
+      setTimeout(() => process.exit(1), 2000).unref();
+    });
+
+    process.on("unhandledRejection", (r) => {
+      console.error("unhandledRejection:", r);
+      setTimeout(() => process.exit(1), 2000).unref();
+    });
+
     // Health check
     app.get("/health", (req, res) => {
       res.status(200).send("OK");
