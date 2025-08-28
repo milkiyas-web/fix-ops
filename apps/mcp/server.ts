@@ -181,6 +181,7 @@ async function startServer() {
     app.post("/mcp", async (req, res) => {
       await transport.handleRequest(req, res);
     });
+    app.get("/debug/ping", (_, res) => res.send("pong"));
 
     // Debug route (manual testing of Repo tool)
     app.post("/debug/repo", async (req, res) => {
