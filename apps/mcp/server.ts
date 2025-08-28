@@ -200,9 +200,6 @@ async function startServer() {
       res.send("MCP server is alive");
     });
 
-    app.listen(port, () => {
-      console.log(`Express server listening on port: ${port}`);
-    });
     // Start single server
     app.listen(port, "0.0.0.0", () => {
       console.log(`MCP server running on http://0.0.0.0:${port}`);
