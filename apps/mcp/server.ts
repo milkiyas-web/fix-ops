@@ -132,7 +132,7 @@ app.use(bodyParser.json());
 
 async function startServer() {
   try {
-    const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
+    const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3001;
 
     // MCP Transport
     const transport = new StreamableHTTPServerTransport({
