@@ -1,15 +1,14 @@
 #Use official Node.js image
-FROM node:20-slim AS builder 
+FROM node:20-alpine
 
-#Install dependacies first ()
-COPY package*.json ./
+# Install dependacies first ()
 # FROM node:20-alpine
 
 
 # Change to MCP directory and install dependencies
-WORKDIR /app/mcp
+WORKDIR /app
 # RUN npm install
-RUN npm ci 
+RUN npm install
 # Copy the entire project
 COPY . .
 
@@ -19,8 +18,9 @@ ENV PATH /app/mcp/node_modules/.bin:$PATH
 # Build the application
 RUN npm run build
 
-# Expose port
-EXPOSE 3000
+# Expose port expected by platform and set default PORT
+ENV PORT=8080
+EXPOSE 8080
 
 # Start the application
 CMD ["npm", "start"]
