@@ -132,7 +132,7 @@ app.use(bodyParser.json());
 
 async function startServer() {
   try {
-    const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 8080;
+    const port = process.env.PORT ? parseInt(process.env.PORT, 10) : 3000;
 
     // MCP Transport
     const transport = new StreamableHTTPServerTransport({
@@ -157,8 +157,8 @@ async function startServer() {
 
     // Debug route (manual testing of Repo tool)
     app.post("/debug/repo", async (req, res) => {
-      const { repoUrl, branch } = req.body;
       console.log("/debug/repo is hit");
+      const { repoUrl, branch } = req.body;
       try {
         const result = await repoToolHandler({ repoUrl, branch }, {});
         res.json(result);
